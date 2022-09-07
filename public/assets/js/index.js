@@ -67,14 +67,19 @@ const renderActiveNote = () => {
 };
 
 const handleNoteSave = () => {
-    const newNote = {
-        title: noteTitle.value,
-        text: noteText.value,
-    };
-    saveNote(newNote).then(() => {
-        getAndRenderNotes();
-        renderActiveNote();
-    });
+    if(!noteTitle.value.trim() || !noteText.value.trim()){
+        window.alert('You cant save an empty note!')
+    }
+        else{
+        const newNote = {
+            title: noteTitle.value,
+            text: noteText.value,
+        };
+        saveNote(newNote).then(() => {
+            getAndRenderNotes();
+            renderActiveNote();
+        });
+    }
 };
 
 // Delete the clicked note
